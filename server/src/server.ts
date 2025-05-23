@@ -8,12 +8,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 app.use(
   cors({
-    origin: ['user-task-management-five.vercel.app'],
+    origin: ['https://user-task-management-five.vercel.app'],
     credentials: true,
   })
 )
