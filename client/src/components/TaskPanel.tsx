@@ -9,8 +9,10 @@ export default function TaskPanel({ user }: Props) {
   const [tasks, setTasks] = useState<Task[]>([])
   const [title, setTitle] = useState('')
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   const fetchTasks = () => {
-    fetch(`http://localhost:3000/api/users/${user.id}/tasks`)
+    fetch(`${API_URL}/users/${user.id}/tasks`)
       .then((res) => res.json())
       .then((data) => {
         const sorted = data.sort((a: Task, b: Task) =>
@@ -28,7 +30,7 @@ export default function TaskPanel({ user }: Props) {
     e.preventDefault()
     if (!title.trim()) return
 
-    await fetch(`http://localhost:3000/api/users/${user.id}/tasks`, {
+    await fetch(`${API_URL}/users/${user.id}/tasks`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title }),

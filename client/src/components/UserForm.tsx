@@ -7,11 +7,13 @@ interface Props {
 export default function UserForm({ onUserCreated }: Props) {
   const [name, setName] = useState('')
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim()) return
 
-    await fetch('http://localhost:3000/api/users', {
+    await fetch(`${API_URL}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name }),

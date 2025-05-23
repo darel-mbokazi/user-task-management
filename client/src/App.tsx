@@ -9,8 +9,10 @@ export default function App() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [userSort, setUserSort] = useState<'alpha' | 'created'>('alpha')
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   const fetchUsers = async () => {
-    const res = await fetch('http://localhost:3000/api/users')
+    const res = await fetch(`${API_URL}/users`)
     const data: User[] = await res.json()
 
     if (userSort === 'alpha') {
